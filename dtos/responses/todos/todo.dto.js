@@ -3,9 +3,8 @@ const PageMetaDto = require('./../shared/page_meta.dto');
 function buildPagedList(todos, page, pageSize, totalResourcesCount, basePath) {
     return {
         success: true,
-        page_meta: PageMetaDto.build(page, pageSize, totalResourcesCount, basePath),
+        page_meta: PageMetaDto.build(todos.length, page, pageSize, totalResourcesCount, basePath),
         ...buildDtos(todos),
-        //products: products.map(product => product.getJsonSummary())
     }
 }
 

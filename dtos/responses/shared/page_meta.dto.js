@@ -1,8 +1,9 @@
 module.exports = {
 
-    build(currentPage, pageSize, totalResourcesCount, basePath) {
+    build(currentResourceCount, currentPage, pageSize, totalResourcesCount, basePath) {
 
         data = {};
+        data.current_items_count = currentResourceCount || 0;
         data.total_items_count = totalResourcesCount;
         data.offset = (currentPage - 1) * pageSize;
         data.requested_page_size = pageSize;
@@ -18,9 +19,11 @@ module.exports = {
             data.has_next_page = false;
             data.next_page_number = 1;
         }
-        if (data.current_page_number > 1)
+
+        if (data.current_page_number > 1) {
+            data.has_prev_page = true;
             data.prev_page_number = data.current_page_number - 1;
-        else {
+        } else {
             data.has_prev_page = false;
             data.prev_page_number = 1
         }
