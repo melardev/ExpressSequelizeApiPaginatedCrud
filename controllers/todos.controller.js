@@ -68,7 +68,10 @@ exports.create = function (req, res, next) {
 exports.update = function (req, res, next) {
     const {title, description, completed} = req.body;
     req.todo.title = title;
-    req.todo.description = description;
+
+    if (description != null)
+        req.todo.description = description;
+
     req.todo.completed = completed;
 
     req.todo.save().then(todo => {
